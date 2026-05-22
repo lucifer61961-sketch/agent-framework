@@ -2,7 +2,8 @@ import express, { Request, Response, NextFunction } from "express";
 import crypto from "crypto";
 import { AnthropicProvider } from "../providers/anthropic";
 import { OpenAIProvider } from "../providers/openai";
-import { GeminiProvider } from "../providers/gemini";
+: provider === "gemini"
+      ? new GeminiProvider()
 import { GroqProvider } from "../providers/groq";
 import { SkillRouter, GoogleSearchSkill, FileWriterSkill } from "../skills/index";
 import { bashToolDefinition } from "../tools/bash";
