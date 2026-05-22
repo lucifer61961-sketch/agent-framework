@@ -1,0 +1,37 @@
+{
+  "name": "agent-framework",
+  "version": "1.0.0",
+  "description": "Production-ready autonomous AI agent with Telegram gateway",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "setup": "tsx setup.ts",
+    "test": "tsx test-agent.ts",
+    "start": "tsx src/start.ts",
+    "dev": "tsx watch src/start.ts",
+    "build": "tsc",
+    "run-agent": "tsx src/run.ts",
+    "run-skills": "tsx src/run-skills.ts",
+    "docker:up": "docker compose up --build -d",
+    "docker:down": "docker compose down",
+    "docker:logs": "docker compose logs -f",
+    "docker:restart": "docker compose restart"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.27.0",
+    "better-sqlite3": "^11.1.2",
+    "express": "^4.19.2",
+    "groq-sdk": "^1.2.0",
+    "openai": "^4.57.0"
+  },
+  "devDependencies": {
+    "@types/better-sqlite3": "^7.6.11",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.0.0",
+    "tsx": "^4.16.0",
+    "typescript": "^5.5.0"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

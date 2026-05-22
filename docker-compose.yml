@@ -1,0 +1,26 @@
+version: "3.9"
+
+services:
+  agent:
+    build: .
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    volumes:
+      # Mount Docker socket so the gateway can spawn sandbox containers
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      # Persist the SQLite session database and workspace across restarts
+      - ./data:/app/data
+      - ./workspace:/app/workspace
+      # Hot-reload directives without rebuilding the image
+      - ./directives:/app/directives:ro
+    env_file:
+      - .env
+    environment:
+      NODE_ENV: production
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
